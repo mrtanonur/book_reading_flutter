@@ -1,7 +1,8 @@
 import 'dart:io';
+
+import 'package:book_reading_flutter/utils/constants/color_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:book_reading_flutter/utils/constants/color_constants.dart';
 
 class BRTextfield extends StatelessWidget {
   final TextEditingController controller;

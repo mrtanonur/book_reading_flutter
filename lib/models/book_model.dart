@@ -1,19 +1,19 @@
 import 'package:book_reading_flutter/utils/enums/book_enums.dart';
 
 class BookModel {
-  String ad;
-  String yazar;
+  String name;
+  String author;
   bool isRead;
   BookType category;
 
   BookModel(
-      {required this.ad,
-      required this.yazar,
+      {required this.name,
+      required this.author,
       this.isRead = false,
       required this.category});
 
   @override
   String toString() {
-    return "BookModel: Ad:$ad  Yazar:$yazar isRead:$isRead  Category:$category";
+    return "BookModel: Ad:$name  Yazar:$author isRead:$isRead  Category:$category";
   }
 }

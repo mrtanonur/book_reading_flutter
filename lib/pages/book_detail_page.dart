@@ -13,20 +13,20 @@ class BookDetailPage extends StatefulWidget {
 
 class _BookDetailPageState extends State<BookDetailPage> {
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _yazarController = TextEditingController();
+  final TextEditingController _authorController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     BookProvider provider = context.read<BookProvider>();
-    _nameController.text = provider.books[provider.bookDetailIndex!].ad;
-    _yazarController.text = provider.books[provider.bookDetailIndex!].yazar;
+    _nameController.text = provider.books[provider.bookDetailIndex!].name;
+    _authorController.text = provider.books[provider.bookDetailIndex!].author;
   }
 
   @override
   void dispose() {
     _nameController.dispose();
-    _yazarController.dispose();
+    _authorController.dispose();
     super.dispose();
   }
 
@@ -35,7 +35,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
     return Scaffold(
       backgroundColor: ColorConstants.white,
       appBar: AppBar(
-        title: const Text("Kitap Güncelleme"),
+        title: const Text("Details page"),
         backgroundColor: ColorConstants.white,
       ),
       body: SafeArea(
@@ -46,7 +46,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
             children: [
               BRTextfield(controller: _nameController, hintText: "Name"),
               const SizedBox(height: SizesConstants.s15),
-              BRTextfield(controller: _yazarController, hintText: "Yazar"),
+              BRTextfield(controller: _authorController, hintText: "Author"),
               const SizedBox(height: SizesConstants.s20),
               SizedBox(
                 width: SizesConstants.doubleInfinity,
@@ -62,11 +62,11 @@ class _BookDetailPageState extends State<BookDetailPage> {
                     ),
                     onPressed: () {
                       context.read<BookProvider>().update(
-                          ad: _nameController.text,
-                          yazar: _yazarController.text);
+                          name: _nameController.text,
+                          author: _authorController.text);
                     },
                     child: const Text(
-                      "Güncel",
+                      "Update",
                       style: TextStyle(color: ColorConstants.white),
                     )),
               ),

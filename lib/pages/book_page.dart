@@ -19,8 +19,8 @@ class BookPage extends StatefulWidget {
 }
 
 class _BookPageState extends State<BookPage> {
-  TextEditingController adController = TextEditingController();
-  TextEditingController yazarController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController authorController = TextEditingController();
 
   String dropdownValue = BookType.values[1].name;
   int selectedValue = 1;
@@ -32,8 +32,8 @@ class _BookPageState extends State<BookPage> {
 
   @override
   void dispose() {
-    adController.dispose();
-    yazarController.dispose();
+    nameController.dispose();
+    authorController.dispose();
     super.dispose();
   }
 
@@ -75,13 +75,13 @@ class _BookPageState extends State<BookPage> {
   Widget form() {
     return Column(children: [
       BRTextfield(
-        controller: adController,
-        hintText: "ad",
+        controller: nameController,
+        hintText: "name",
       ),
       const SizedBox(height: SizesConstants.s10),
       BRTextfield(
-        controller: yazarController,
-        hintText: "yazar",
+        controller: authorController,
+        hintText: "author",
       ),
       const SizedBox(height: SizesConstants.s20),
       Row(
@@ -93,7 +93,7 @@ class _BookPageState extends State<BookPage> {
           ),
           BRDropdownMenu(
               valueMaterial: dropdownValue,
-              liste: BookType.values.map((e) => e.name).toList(),
+              dropdownList: BookType.values.map((e) => e.name).toList(),
               dropdownValueSetMaterial: (String? value) {
                 setState(() {
                   dropdownValue = value!;
@@ -118,32 +118,18 @@ class _BookPageState extends State<BookPage> {
                   borderRadius: BorderRadius.circular(SizesConstants.s8))),
             ),
             onPressed: () {
-              if (adController.text.isNotEmpty &&
-                  yazarController.text.isNotEmpty) {
+              if (nameController.text.isNotEmpty &&
+                  authorController.text.isNotEmpty) {
                 context.read<BookProvider>().add(
-                      ad: adController.text,
-                      yazar: yazarController.text,
+                      name: nameController.text,
+                      author: authorController.text,
                     );
-                // bool bookExists =
-                //     books.any((book) => book.ad == adController.text);
-                //   if (!bookExists) {
-                //   } else {
-                //     brAlertDialog(
-                //       context: context,
-                //       title: "Uyarı",
-                //       description: "Kitap mevcuttur",
-                //     );
-                //   }
-                // } else {
-                //   brAlertDialog(
-                //       context: context,
-                //       title: "Uyarı",
-                //       description: "Tüm alanlar zorunlu");
-                // }
+                nameController.clear();
+                authorController.clear();
               }
             },
             child: const Text(
-              "Kaydet",
+              "Save",
               style: TextStyle(color: ColorConstants.white),
             )),
       ),
@@ -155,7 +141,7 @@ class _BookPageState extends State<BookPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Kayıtlı Kitaplar",
+          "Saved Books",
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         const SizedBox(
@@ -176,9 +162,9 @@ class _BookPageState extends State<BookPage> {
                 confirmDismiss: (direction) async {
                   brAlertDialog(
                       context: context,
-                      title: "Uyarı",
-                      description: "Silmek istediğinizden emin misiniz",
-                      confirmText: "Sil",
+                      title: "Warning",
+                      description: "Are you sure you want to delete?",
+                      confirmText: "Delete",
                       confirmOnPressed: () {
                         context.read<BookProvider>().delete(index: index);
                         Navigator.pop(context);
@@ -213,7 +199,7 @@ class _BookPageState extends State<BookPage> {
                         side: const BorderSide(
                             color: ColorConstants.grey, width: .1)),
                     title: Text(
-                      context.watch<BookProvider>().books[index].ad,
+                      context.watch<BookProvider>().books[index].name,
                       style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                     subtitle: Text(
@@ -248,7 +234,7 @@ class _BookPageState extends State<BookPage> {
                         const SizedBox(
                           width: SizesConstants.s8,
                         ),
-                        Text(context.watch<BookProvider>().books[index].yazar,
+                        Text(context.watch<BookProvider>().books[index].author,
                             style: Theme.of(context).textTheme.bodyMedium),
                       ],
                     )),
@@ -272,14 +258,14 @@ class _BookPageState extends State<BookPage> {
           height: SizesConstants.s10,
         ),
         Text(
-          "Kitaplar",
+          "Books",
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         const SizedBox(
           height: SizesConstants.s5,
         ),
         Text(
-            "İnsanın kendi kendine yapabildiği üç harika ritüelden biri kitap okumaktır.",
+            "One of the 3 rituals that one can do by itself is reading a book.",
             style: Theme.of(context).textTheme.bodyMedium),
       ],
     );

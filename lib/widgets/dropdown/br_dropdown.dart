@@ -1,18 +1,19 @@
 import 'dart:io';
+
+import 'package:book_reading_flutter/utils/constants/color_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:book_reading_flutter/utils/constants/color_constants.dart';
 
 class BRDropdownMenu extends StatefulWidget {
   final String valueMaterial;
   final int valueCupertino;
-  final List<String> liste;
+  final List<String> dropdownList;
   final void Function(String?) dropdownValueSetMaterial;
   final void Function(int?) dropdownValueSetCupertino;
   const BRDropdownMenu(
       {super.key,
       required this.valueMaterial,
-      required this.liste,
+      required this.dropdownList,
       required this.dropdownValueSetMaterial,
       required this.valueCupertino,
       required this.dropdownValueSetCupertino});
@@ -47,7 +48,8 @@ class _BRDropdownMenuState extends State<BRDropdownMenu> {
           icon: const Icon(Icons.arrow_drop_down),
           elevation: 16,
           style: const TextStyle(color: ColorConstants.accent),
-          items: widget.liste.map<DropdownMenuItem<String>>((String value) {
+          items:
+              widget.dropdownList.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(value: value, child: Text(value));
           }).toList(),
           onChanged: widget.dropdownValueSetMaterial);
@@ -64,12 +66,13 @@ class _BRDropdownMenuState extends State<BRDropdownMenu> {
               onSelectedItemChanged: widget.dropdownValueSetCupertino,
               scrollController: FixedExtentScrollController(
                   initialItem: widget.valueCupertino),
-              children: List<Widget>.generate(widget.liste.length, (int index) {
-                return Center(child: Text(widget.liste[index]));
+              children: List<Widget>.generate(widget.dropdownList.length,
+                  (int index) {
+                return Center(child: Text(widget.dropdownList[index]));
               })),
           // This displays the selected fruit name.
         ),
-        child: Text(widget.liste[widget.valueCupertino],
+        child: Text(widget.dropdownList[widget.valueCupertino],
             style: const TextStyle(fontSize: 22.0)),
       );
     }

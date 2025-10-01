@@ -25,11 +25,11 @@ Future brAlertDialog(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text("İptal",
+                  child: const Text("Cancel",
                       style: TextStyle(color: ColorConstants.blue))),
             TextButton(
                 onPressed: confirmOnPressed ?? () => Navigator.pop(context),
-                child: Text(confirmText ?? "Tamam",
+                child: Text(confirmText ?? "OK",
                     style: TextStyle(
                         color: isDestructive
                             ? ColorConstants.red
@@ -47,12 +47,12 @@ Future brAlertDialog(
                     Navigator.pop(context);
                   },
                   child: const Text(
-                    "İptal",
+                    "Cancel",
                     style: TextStyle(color: ColorConstants.blue),
                   )),
             CupertinoDialogAction(
                 onPressed: confirmOnPressed ?? () => Navigator.pop(context),
-                child: Text(confirmText ?? "Tamam",
+                child: Text(confirmText ?? "OK",
                     style: TextStyle(
                         color: isDestructive
                             ? ColorConstants.red

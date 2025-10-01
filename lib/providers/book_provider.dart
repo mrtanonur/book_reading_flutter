@@ -6,10 +6,10 @@ class BookProvider extends ChangeNotifier {
   List<BookModel> books = [];
   int? bookDetailIndex;
 
-  void add({required String ad, required String yazar}) {
+  void add({required String name, required String author}) {
     final BookModel book = BookModel(
-      ad: ad,
-      yazar: yazar,
+      name: name,
+      author: author,
       category: BookType.adventure,
     );
     books.add(book);
@@ -21,10 +21,9 @@ class BookProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void update({required String ad, required String yazar}) {
-    books[bookDetailIndex!].ad = ad;
-    books[bookDetailIndex!].yazar = yazar;
-    print(books[bookDetailIndex!].toString());
+  void update({required String name, required String author}) {
+    books[bookDetailIndex!].name = name;
+    books[bookDetailIndex!].author = author;
     notifyListeners();
   }
 }
