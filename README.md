@@ -7,6 +7,7 @@ A Flutter project for managing your personal book collection. The app allows you
   
 Features
 	•	Book Management
+	
 	•	Add new books with title, author, and category
 	•	Saved books appear in a scrollable list
 	•	Delete books with swipe-to-dismiss and confirmation
