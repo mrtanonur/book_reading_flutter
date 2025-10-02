@@ -31,7 +31,7 @@ Installation
 bash
 
 Clone the repository
-git clone https://github.com/yourusername/book_reading_flutter.git
+git clone https://github.com/mrtanonur/book_reading_flutter.git
 
 Navigate into the project
 cd book_reading_flutter
